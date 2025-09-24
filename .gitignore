@@ -1,0 +1,19 @@
+# Python
+*.pyc
+__pycache__/
+*.pyd
+backend/.venv/
+
+# Node.js
+frontend/node_modules/
+
+# General
+*.dll
+*.exe
+*.zip
+*.rar
+*.tar
+*.gz
+*.db
+.env
+elsatic_serach/movie engine using elasticsearch

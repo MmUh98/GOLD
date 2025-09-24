@@ -1,0 +1,9 @@
+{
+  "window": 60,
+  "features": [
+    "Close"
+  ],
+  "scaler": "StandardScaler",
+  "target": "Close_next_step",
+  "notes": "20y daily gold (GC=F) with StandardScaler, LSTM"
+}
