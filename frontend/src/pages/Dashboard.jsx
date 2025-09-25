@@ -1,6 +1,9 @@
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import LivePrice from "../components/LivePrice";
+import GoldPriceWidget from "../components/GoldPriceWidget";
+import GoldMiniChart from "../components/GoldMiniChart";
+import TickerTapeWidget from "../components/TickerTapeWidget";
 import { useEffect, useState } from "react";
 import api from "../services/api";
 
@@ -37,6 +40,10 @@ export default function Dashboard(){
       <div className="grid" style={{padding:16,gap:16}}>
         <Sidebar/>
         <main className="card" style={{display:"grid",gap:16}}>
+          <div>
+            <h3 style={{marginTop:0}}>Market Ticker</h3>
+            <TickerTapeWidget />
+          </div>
           <LivePrice />
           <div className="card">
             <h3>Historical Latest</h3>
@@ -50,6 +57,13 @@ export default function Dashboard(){
                 Mode: {predMeta.mode}{predMeta.window?` · window ${predMeta.window}`:''}{predMeta.used?` · used ${predMeta.used}`:''}
               </div>
             )}
+          </div>
+          <div>
+            <h3 style={{marginTop:0}}>Gold Widgets</h3>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
+            <GoldPriceWidget />
+            <GoldMiniChart />
           </div>
         </main>
       </div>
