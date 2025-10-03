@@ -4,6 +4,9 @@ import LivePrice from "../components/LivePrice";
 import GoldPriceWidget from "../components/GoldPriceWidget";
 import GoldMiniChart from "../components/GoldMiniChart";
 import TickerTapeWidget from "../components/TickerTapeWidget";
+import SentimentGauge from "../components/SentimentGauge";
+import SentimentSummary from "../components/SentimentSummary";
+import SentimentFeed from "../components/SentimentFeed";
 import { useEffect, useState } from "react";
 import api from "../services/api";
 
@@ -40,30 +43,52 @@ export default function Dashboard(){
       <div className="grid" style={{padding:16,gap:16}}>
         <Sidebar/>
         <main className="card" style={{display:"grid",gap:16}}>
-          <div>
-            <h3 style={{marginTop:0}}>Market Ticker</h3>
-            <TickerTapeWidget />
-          </div>
-          <LivePrice />
-          <div className="card">
-            <h3>Historical Latest</h3>
-            <div style={{fontSize:28}}>{typeof latest==='number'?latest.toFixed(2):"—"}</div>
-          </div>
-          <div className="card">
-            <h3>Model Prediction</h3>
-            <div style={{fontSize:28}}>{typeof pred==='number'?pred.toFixed(2):"—"}</div>
-            {predMeta?.mode && (
-              <div style={{color:'#9ca3af', fontSize:12, marginTop:4}}>
-                Mode: {predMeta.mode}{predMeta.window?` · window ${predMeta.window}`:''}{predMeta.used?` · used ${predMeta.used}`:''}
+          <div style={{display:'grid', gap:16, gridTemplateColumns:'1fr 380px'}}>
+            {/* Left Column: Market & Price / Prediction */}
+            <div style={{display:'grid', gap:16}}>
+              <div>
+                <h3 style={{marginTop:0}}>Market Ticker</h3>
+                <TickerTapeWidget />
               </div>
-            )}
-          </div>
-          <div>
-            <h3 style={{marginTop:0}}>Gold Widgets</h3>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
-            <GoldPriceWidget />
-            <GoldMiniChart />
+              <LivePrice />
+              <div className="card">
+                <h3>Historical Latest</h3>
+                <div style={{fontSize:28}}>{typeof latest==='number'?latest.toFixed(2):"—"}</div>
+              </div>
+              <div className="card">
+                <h3>Model Prediction</h3>
+                <div style={{fontSize:28}}>{typeof pred==='number'?pred.toFixed(2):"—"}</div>
+                {predMeta?.mode && (
+                  <div style={{color:'#9ca3af', fontSize:12, marginTop:4}}>
+                    Mode: {predMeta.mode}{predMeta.window?` · window ${predMeta.window}`:''}{predMeta.used?` · used ${predMeta.used}`:''}
+                  </div>
+                )}
+              </div>
+              <div>
+                <h3 style={{marginTop:0}}>Gold Widgets</h3>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
+                <GoldPriceWidget />
+                <GoldMiniChart />
+              </div>
+            </div>
+            {/* Right Column: Sentiment */}
+            <div style={{display:'flex', flexDirection:'column', gap:16}}>
+              <div style={{display:'grid', gap:16, gridTemplateColumns:'1fr'}}>
+                <div className="card" style={{padding:12}}>
+                  <SentimentGauge />
+                </div>
+                <div className="card" style={{padding:12}}>
+                  <SentimentSummary />
+                </div>
+              </div>
+              <div className="card" style={{flex:1, minHeight:320, display:'flex', flexDirection:'column'}}>
+                <h3 style={{marginTop:0}}>Sentiment Feed</h3>
+                <div style={{flex:1, overflowY:'auto'}}>
+                  <SentimentFeed />
+                </div>
+              </div>
+            </div>
           </div>
         </main>
       </div>

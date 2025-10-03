@@ -4,6 +4,7 @@ from .alerts import bp as alerts_bp
 from .prices import bp as prices_bp
 from .reports import bp as reports_bp
 from .users import bp as users_bp
+from .sentiment import bp as sentiment_bp
 def register_blueprints(app):
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(predict_bp, url_prefix="/api")
@@ -11,3 +12,4 @@ def register_blueprints(app):
     app.register_blueprint(prices_bp, url_prefix="/api")
     app.register_blueprint(reports_bp, url_prefix="/api")
     app.register_blueprint(users_bp, url_prefix="/api")
+    app.register_blueprint(sentiment_bp, url_prefix="/api")

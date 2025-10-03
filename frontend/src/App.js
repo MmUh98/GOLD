@@ -7,6 +7,7 @@ import Charts from "./pages/Charts";
 import Alerts from "./pages/Alerts";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
+import SentimentDashboard from "./pages/SentimentDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 export default function App(){
   return (<Routes>
@@ -14,6 +15,7 @@ export default function App(){
     <Route path="/signup" element={<Signup/>}/>
     <Route element={<ProtectedRoute/>}>
       <Route path="/dashboard" element={<Dashboard/>}/>
+  <Route path="/sentiment" element={<SentimentDashboard/>}/>
   <Route path="/chart" element={<Charts/>}/>
       <Route path="/alerts" element={<Alerts/>}/>
       <Route path="/reports" element={<Reports/>}/>
